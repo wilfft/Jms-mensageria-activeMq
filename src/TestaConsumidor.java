@@ -17,10 +17,22 @@ public class TestaConsumidor {
 
         Destination fila = (Destination) context.lookup("detran");
         MessageConsumer consumer = session.createConsumer(fila);
-        Message message = consumer.receive();
+
+      //  Message message = consumer.receive(); //receive é apenas para UMA mensagem
+
+
+        consumer.setMessageListener(new MessageListener() {
+            @Override
+            public void onMessage(Message message) {
+
+            }
+        });
         System.out.println("Recebendo mensagem: " + message);
 
+
+
         new Scanner(System.in).nextLine();
+
         session.close();
         connection.close();
         context.close();

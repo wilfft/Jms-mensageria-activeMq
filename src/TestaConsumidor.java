@@ -24,10 +24,15 @@ public class TestaConsumidor {
         consumer.setMessageListener(new MessageListener() {
             @Override
             public void onMessage(Message message) {
-
+TextMessage textMessage = (TextMessage) message;
+                try {
+                    System.out.println("Recebendo mensagem: " + textMessage.getText());
+                } catch (JMSException e) {
+                    e.printStackTrace();
+                }
             }
         });
-        System.out.println("Recebendo mensagem: " + message);
+
 
 
 
